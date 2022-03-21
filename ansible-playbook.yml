@@ -1,6 +1,7 @@
 ---
 - name: Play1 for copying files
   hosts: dockerMaster
+  gather_facts: False
   become: yes
   tasks:
     - name: Create a directory if it does not exist
@@ -25,6 +26,7 @@
 
 - name: "Play 2- python installation"
   hosts: dockerMaster
+  gather_facts: False
   become: yes
   tasks:
     - name: Install Python 3.6
@@ -50,6 +52,7 @@
 
 - name: "Play 3 Install Python packages and docker image push"
   hosts: dockerMaster
+  gather_facts: False
   become: yes
   vars:
     ansible_python_interpreter: /usr/bin/python3
@@ -95,8 +98,9 @@
     - debug:
         var: out5
 
-- name: "Play 3 docker stack deploy"
+- name: "Play 4 docker stack deploy"
   hosts: dockerMaster
+  gather_facts: False
   become: yes
   tasks:
     - name: Remove stack
